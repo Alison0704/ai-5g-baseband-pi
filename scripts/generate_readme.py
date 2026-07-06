@@ -1,4 +1,74 @@
-# AI-Driven 5G Baseband Processing on Raspberry Pi
+"""Generate README.md from saved project results."""
+
+import csv
+import json
+from pathlib import Path
+
+
+RESULTS_DIR = Path("results")
+
+
+def load_accuracy(filename: str) -> str:
+    """Load model accuracy from a JSON report."""
+    path = RESULTS_DIR / filename
+
+    if not path.exists():
+        return "Not available"
+
+    report = json.loads(path.read_text(encoding="utf-8"))
+    return f"{float(report['accuracy']):.1%}"
+
+
+def load_benchmark() -> dict[str, dict[str, str]]:
+    """Load the available Raspberry Pi benchmark."""
+    candidates = [
+        RESULTS_DIR / "system_benchmark_raspberry_pi_cached.csv",
+        RESULTS_DIR / "system_benchmark_raspberry_pi.csv",
+        RESULTS_DIR / "system_benchmark.csv",
+    ]
+
+    path = next(
+        (candidate for candidate in candidates if candidate.exists()),
+        None,
+    )
+
+    if path is None:
+        return {}
+
+    with path.open(newline="", encoding="utf-8") as file:
+        return {
+            row["operation"]: row
+            for row in csv.DictReader(file)
+        }
+
+
+def metric(
+    rows: dict[str, dict[str, str]],
+    operation: str,
+    field: str,
+) -> str:
+    """Format a benchmark metric."""
+    value = rows.get(operation, {}).get(field)
+
+    if not value:
+        return "N/A"
+
+    return f"{float(value):.2f}"
+
+
+def main() -> None:
+    """Generate the project README."""
+    link_accuracy = load_accuracy(
+        "link_adapter_report.json"
+    )
+
+    fault_accuracy = load_accuracy(
+        "failure_classifier_report.json"
+    )
+
+    benchmarks = load_benchmark()
+
+    readme = f"""# AI-Driven 5G Baseband Processing on Raspberry Pi
 
 A software-only, NR-inspired OFDM simulator combining digital signal
 processing, machine-learning link adaptation, fault diagnosis,
@@ -32,8 +102,8 @@ automated testing, and Raspberry Pi deployment.
 
 ## Machine-learning results
 
-- Link-adaptation accuracy: **94.2%**
-- Fault-classification accuracy: **97.8%**
+- Link-adaptation accuracy: **{link_accuracy}**
+- Fault-classification accuracy: **{fault_accuracy}**
 - Verified pilot-corruption diagnosis confidence: **99.6%**
 
 The link-adaptation model selects QPSK, 16-QAM, or 64-QAM using:
@@ -58,10 +128,10 @@ The fault classifier identifies:
 
 | Operation | Mean latency | Throughput |
 |---|---:|---:|
-| QPSK frame | 1.67 ms | 599.48 frames/s |
-| 16-QAM frame | 1.78 ms | 560.56 frames/s |
-| 64-QAM frame | 2.28 ms | 439.03 frames/s |
-| ML selection | 3.90 ms | 256.10 inferences/s |
+| QPSK frame | {metric(benchmarks, "QPSK_link_frame", "mean_latency_ms")} ms | {metric(benchmarks, "QPSK_link_frame", "frames_per_second")} frames/s |
+| 16-QAM frame | {metric(benchmarks, "16QAM_link_frame", "mean_latency_ms")} ms | {metric(benchmarks, "16QAM_link_frame", "frames_per_second")} frames/s |
+| 64-QAM frame | {metric(benchmarks, "64QAM_link_frame", "mean_latency_ms")} ms | {metric(benchmarks, "64QAM_link_frame", "frames_per_second")} frames/s |
+| ML selection | {metric(benchmarks, "ml_modulation_selection", "mean_latency_ms")} ms | {metric(benchmarks, "ml_modulation_selection", "inferences_per_second")} inferences/s |
 
 Caching the trained model reduced modulation-selection latency from
 approximately 13.9 ms to 3.9 ms.
@@ -158,3 +228,15 @@ The current implementation uses:
 - Implemented automated unit, integration, and fault-injection tests.
 - Deployed the simulator, ML inference pipeline, monitoring dashboard,
   and automatic startup service on a Raspberry Pi 4.
+"""
+
+    Path("README.md").write_text(
+        readme,
+        encoding="utf-8",
+    )
+
+    print("Generated README.md")
+
+
+if __name__ == "__main__":
+    main()
