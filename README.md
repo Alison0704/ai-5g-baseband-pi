@@ -172,3 +172,10 @@ The current implementation uses:
 ### Raspberry Pi performance
 
 ![Raspberry Pi frame throughput](results/plots/pi_frame_throughput.png)
+
+## End-to-end demo
+
+Run the baseband simulation, ML link adaptation, and fault diagnosis
+from one command:
+
+    make demo
