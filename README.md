@@ -158,3 +158,17 @@ The current implementation uses:
 - Implemented automated unit, integration, and fault-injection tests.
 - Deployed the simulator, ML inference pipeline, monitoring dashboard,
   and automatic startup service on a Raspberry Pi 4.
+
+## Results
+
+### Modulation performance
+
+![BER versus SNR](results/plots/ber_vs_snr.png)
+
+### Link-adaptation comparison
+
+![Strategy throughput](results/plots/strategy_throughput.png)
+
+### Raspberry Pi performance
+
+![Raspberry Pi frame throughput](results/plots/pi_frame_throughput.png)

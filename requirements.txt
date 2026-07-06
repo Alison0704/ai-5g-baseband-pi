@@ -1,7 +1,8 @@
+joblib
+matplotlib
 numpy
 pandas
-scikit-learn
-joblib
-pytest
-streamlit
 psutil
+pytest
+scikit-learn
+streamlit
