@@ -20,6 +20,8 @@ from sklearn.preprocessing import OneHotEncoder
 from src.fault_injection import FAULT_TYPES
 from src.link_simulator import MODULATIONS
 
+from functools import lru_cache
+
 
 DATASET_PATH = Path("datasets/fault_diagnosis.csv")
 MODEL_PATH = Path("models/failure_classifier.joblib")
@@ -133,6 +135,7 @@ def create_model() -> Pipeline:
     )
 
 
+@lru_cache(maxsize=4)
 def load_failure_classifier(
     model_path: Path = MODEL_PATH,
 ) -> dict[str, Any]:

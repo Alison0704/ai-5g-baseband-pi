@@ -17,6 +17,18 @@ OUTPUT_PATH = Path("results/system_benchmark.csv")
 
 
 def benchmark_link(modulation: str) -> dict[str, float]:
+    """Benchmark modulation-selection inference."""
+    predict_modulation(
+        snr_db=20.0,
+        probe_evm_percent=15.0,
+        probe_ber=0.0,
+        packet_error_rate=0.0,
+        probe_pilot_error_percent=8.0,
+        estimated_channel_magnitude=0.85,
+    )
+
+    latencies = []
+    
     """Benchmark one complete OFDM frame."""
     rng = np.random.default_rng(2026)
     latencies = []

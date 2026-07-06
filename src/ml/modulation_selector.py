@@ -8,6 +8,8 @@ import pandas as pd
 import joblib
 import numpy as np
 
+from functools import lru_cache
+
 MODULATION_ORDER = ("QPSK", "16QAM", "64QAM")
 DEFAULT_MODEL_PATH = Path("models/link_adapter.joblib")
 
@@ -45,6 +47,7 @@ def select_best_modulation_from_ber(
     return "QPSK"
 
 
+@lru_cache(maxsize=4)
 def load_link_adapter(
     model_path: Path = DEFAULT_MODEL_PATH,
 ) -> dict[str, Any]:
