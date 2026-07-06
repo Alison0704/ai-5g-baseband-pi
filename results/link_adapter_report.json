@@ -1,0 +1,68 @@
+{
+  "accuracy": 0.9416666666666667,
+  "training_samples": 480,
+  "test_samples": 120,
+  "features": [
+    "snr_db",
+    "probe_evm_percent",
+    "probe_ber",
+    "packet_error_rate",
+    "probe_pilot_error_percent",
+    "estimated_channel_magnitude"
+  ],
+  "labels": [
+    "QPSK",
+    "16QAM",
+    "64QAM"
+  ],
+  "confusion_matrix": [
+    [
+      65,
+      0,
+      1
+    ],
+    [
+      2,
+      19,
+      2
+    ],
+    [
+      0,
+      2,
+      29
+    ]
+  ],
+  "classification_report": {
+    "QPSK": {
+      "precision": 0.9701492537313433,
+      "recall": 0.9848484848484849,
+      "f1-score": 0.9774436090225563,
+      "support": 66.0
+    },
+    "16QAM": {
+      "precision": 0.9047619047619048,
+      "recall": 0.8260869565217391,
+      "f1-score": 0.8636363636363636,
+      "support": 23.0
+    },
+    "64QAM": {
+      "precision": 0.90625,
+      "recall": 0.9354838709677419,
+      "f1-score": 0.9206349206349206,
+      "support": 31.0
+    },
+    "accuracy": 0.9416666666666667,
+    "macro avg": {
+      "precision": 0.9270537194977493,
+      "recall": 0.9154731041126554,
+      "f1-score": 0.9205716310979469,
+      "support": 120.0
+    },
+    "weighted avg": {
+      "precision": 0.9411093712982707,
+      "recall": 0.9416666666666667,
+      "f1-score": 0.9409549758233967,
+      "support": 120.0
+    }
+  }
+}

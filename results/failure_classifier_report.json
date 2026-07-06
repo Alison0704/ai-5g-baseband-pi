@@ -1,0 +1,166 @@
+{
+  "accuracy": 0.9777777777777777,
+  "training_samples": 720,
+  "test_samples": 180,
+  "features": [
+    "snr_db",
+    "modulation",
+    "bits_per_symbol",
+    "ber",
+    "evm_percent",
+    "pilot_error_percent",
+    "average_symbol_power",
+    "estimated_channel_magnitude"
+  ],
+  "labels": [
+    "NONE",
+    "SYMBOL_GAIN_ERROR",
+    "PILOT_CORRUPTION",
+    "CHANNEL_ESTIMATION_BIAS",
+    "EQUALIZER_BYPASS",
+    "IQ_SWAP"
+  ],
+  "confusion_matrix": [
+    [
+      30,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      29,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      30,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      30,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      28,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      29
+    ]
+  ],
+  "classification_report": {
+    "NONE": {
+      "precision": 0.967741935483871,
+      "recall": 1.0,
+      "f1-score": 0.9836065573770492,
+      "support": 30.0
+    },
+    "SYMBOL_GAIN_ERROR": {
+      "precision": 1.0,
+      "recall": 0.9666666666666667,
+      "f1-score": 0.9830508474576272,
+      "support": 30.0
+    },
+    "PILOT_CORRUPTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 30.0
+    },
+    "CHANNEL_ESTIMATION_BIAS": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 30.0
+    },
+    "EQUALIZER_BYPASS": {
+      "precision": 0.9333333333333333,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.9333333333333333,
+      "support": 30.0
+    },
+    "IQ_SWAP": {
+      "precision": 0.9666666666666667,
+      "recall": 0.9666666666666667,
+      "f1-score": 0.9666666666666667,
+      "support": 30.0
+    },
+    "accuracy": 0.9777777777777777,
+    "macro avg": {
+      "precision": 0.9779569892473119,
+      "recall": 0.9777777777777779,
+      "f1-score": 0.9777762341391129,
+      "support": 180.0
+    },
+    "weighted avg": {
+      "precision": 0.9779569892473118,
+      "recall": 0.9777777777777777,
+      "f1-score": 0.9777762341391127,
+      "support": 180.0
+    }
+  },
+  "feature_importances": [
+    {
+      "feature": "numeric__evm_percent",
+      "importance": 0.30248756530463794
+    },
+    {
+      "feature": "numeric__average_symbol_power",
+      "importance": 0.2988186844346342
+    },
+    {
+      "feature": "numeric__pilot_error_percent",
+      "importance": 0.22244799182460417
+    },
+    {
+      "feature": "numeric__ber",
+      "importance": 0.1260799873428924
+    },
+    {
+      "feature": "numeric__estimated_channel_magnitude",
+      "importance": 0.035534919266604355
+    },
+    {
+      "feature": "numeric__snr_db",
+      "importance": 0.00828156844348776
+    },
+    {
+      "feature": "numeric__bits_per_symbol",
+      "importance": 0.002889656699143
+    },
+    {
+      "feature": "categorical__modulation_QPSK",
+      "importance": 0.001232356290290874
+    },
+    {
+      "feature": "categorical__modulation_64QAM",
+      "importance": 0.001164608240667259
+    },
+    {
+      "feature": "categorical__modulation_16QAM",
+      "importance": 0.0010626621530379834
+    }
+  ]
+}
