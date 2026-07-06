@@ -1,0 +1,13 @@
+AI-Driven OFDM Baseband Project
+==================================
+Link-adaptation accuracy: 94.167%
+Fault-classifier accuracy: 97.778%
+
+Raspberry Pi 4 benchmark:
+- QPSK_link_frame: 1.668 ms average
+- 16QAM_link_frame: 1.784 ms average
+- 64QAM_link_frame: 2.278 ms average
+- ml_modulation_selection: 3.905 ms average
+
+Dashboard: http://ai5gpi.local:8501/
+Deployment: Raspberry Pi systemd service

@@ -1,0 +1,17 @@
+● ai5g-dashboard.service - AI 5G Baseband Dashboard
+     Loaded: loaded (/etc/systemd/system/ai5g-dashboard.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2026-07-06 19:30:28 EDT; 2min 0s ago
+ Invocation: 56c9d84094904aaeba7e7b1fc96b19dc
+   Main PID: 1480 (python)
+      Tasks: 15 (limit: 1626)
+        CPU: 9.126s
+     CGroup: /system.slice/ai5g-dashboard.service
+             └─1480 /home/alison/Projects/ai-5g-baseband-pi/.venv/bin/python -m streamlit run dashboard/app.py --server.address 0.0.0.0 --server.port 8501 --server.headless true
+
+Jul 06 19:30:28 ai5gpi systemd[1]: Started ai5g-dashboard.service - AI 5G Baseband Dashboard.
+Jul 06 19:30:31 ai5gpi python[1480]: Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+Jul 06 19:30:33 ai5gpi python[1480]: 2026-07-06 19:30:33.107 Uvicorn server started on 0.0.0.0:8501
+Jul 06 19:30:33 ai5gpi python[1480]:   You can now view your Streamlit app in your browser.
+Jul 06 19:30:33 ai5gpi python[1480]:   Local URL: http://localhost:8501
+Jul 06 19:30:33 ai5gpi python[1480]:   Network URL: http://10.0.0.144:8501
+Jul 06 19:30:33 ai5gpi python[1480]:   External URL: http://66.131.250.98:8501
